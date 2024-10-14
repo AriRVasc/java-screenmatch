@@ -1,6 +1,7 @@
-package br.com.alura.screenmatch;
+package br.com.alura.screenmatch.models;
 
 public class Titulo {
+
     private String nome;
     private int anoDeLancamento;
     private int duracaoEmMinutos;
@@ -9,7 +10,7 @@ public class Titulo {
     private int totalDeAvaliacoes;
 
 
-    void exibeFichaTecnica()
+    public void exibeFichaTecnica()
     {
         System.out.println("O nome do filme é: " +nome);
         System.out.println("Seu ano de lançamento é: " +anoDeLancamento);
