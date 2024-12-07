@@ -1,30 +1,27 @@
+package br.com.alura.screenmatch.principal;
+
 import br.com.alura.screenmatch.calculos.CalculadoraDeTempo;
 import br.com.alura.screenmatch.calculos.FiltroRecomendacao;
 import br.com.alura.screenmatch.models.*;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 
 public class Main {
     public static void main(String[] args) {
-        Filme favorito = new Filme();
-        favorito.setNome("The Matrix");
-        favorito.setAnoDeLancamento(1999);
+        Filme favorito = new Filme("The Matrix", 2001);
         favorito.setDuracaoEmMinutos(135);
         favorito.setIncluidoNoPlano(true);
         System.out.println("Ficha técnica do filme favorito:");
         favorito.exibeFichaTecnica();
 
 
-        Filme outro = new Filme();
-        outro.setNome("John Wick");
-        outro.setAnoDeLancamento(2014);
+        Filme outro = new Filme("John Wick", 1999);
         outro.setDuracaoEmMinutos(101);
         outro.setIncluidoNoPlano(true);
 
-        Serie serie = new Serie();
-        serie.setNome("La Casa de Papel");
-        serie.setAnoDeLancamento(2017);
+        Serie serie = new Serie("La Casa de Papel", 2017);
         serie.setIncluidoNoPlano(true);
         serie.setAtiva(true);
         serie.setTemporadas(5);
@@ -54,6 +51,24 @@ public class Main {
         System.out.println(listaFilmes);
         System.out.println(listaFilmes.get(1).toString());
         System.out.println("O tamanho da lista é: " +listaFilmes.size());
+
+        favorito.avalia(10);
+        outro.avalia(9.5);
+
+        ArrayList<Titulo> lista = new ArrayList<>();
+        lista.add(favorito);
+        lista.add(outro);
+        lista.add(serie);
+
+        for(Titulo item:lista){
+            System.out.println("Nome: "+item.getNome());
+            if (item instanceof Filme filme && filme.getClassificacao()>2){
+                System.out.println(" Classificação: "+filme.getClassificacao());
+            }
+        }
+        System.out.println(lista);
+        lista.sort(Comparator.comparing(Titulo::getAnoDeLancamento));
+        System.out.println(lista);
 
 
     }
